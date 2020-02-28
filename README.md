@@ -2,4 +2,4 @@
 Data science project for the bank RCI
 
 Janky : 
-  proj_func corresponds to the file that gather all our common functions
+  proj_func.py corresponds to the file that gather all our common functions.
