@@ -172,4 +172,4 @@ def plotPRecall(arg_models, x_train, x_test, y_train, y_test):
     ax.set_xlim((-0.02,1))
     ax.set_title('Courbe Precision Recall : ')
     plt.savefig('precision_recall.png', dpi=200)
-    ;
+  
