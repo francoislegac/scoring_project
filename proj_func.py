@@ -77,17 +77,23 @@ def plot_cumulative_gain(y_true, y_probas, title='Cumulative Gains Curve',ax=Non
     ax.tick_params(labelsize=text_fontsize)
     ax.grid('on')
     #ax.legend(loc='lower right', fontsize=text_fontsize)
-
     return ax
-def plot_several_lifts(arg_models, x_train, x_test, y_train, y_test):
+
+def plot_lifts(arg_models, parameters, x_train, x_test, y_train, y_test):
     '''
     arg_models = la liste de model que tu veux tester
+    parameters = liste des paramètres à tester ex pour LR et GB : 
+    (['learning_rate', 'n_estimators'], ['penalty'])
     '''
-    fig ,ax = plt.subplots()
+    fig ,ax = plt.subplots(figsize=(8,8))
     legend = []
-    for model in arg_models:
+    for count, model in enumerate(arg_models):
+        s = type(model).__name__ + ' : '
+        for param in parameters[count]:
+            s += param + ' ' + str(model.get_params()[param]) + ', '        
+        s = s[:-2]
         x = {
-            'label': 'LR %s, C = %.2f ' %(model.get_params()['penalty'], model.get_params()['C']),
+            'label': s,
             'model': model, 
         }
         legend.append(x['label'])
@@ -96,7 +102,7 @@ def plot_several_lifts(arg_models, x_train, x_test, y_train, y_test):
         plot_cumulative_gain(y_test, y_pred_proba, ax = ax)
     ax.set_title('Lift Chart')
     ax.set_ylabel('TPR')
-    ax.legend(tuple(legend), loc= 'lower right')
+    ax.legend(legend, loc= 'lower right')
     ax.plot([0, 1], [0, 1], 'k--', lw=2, label='Baseline')
 
 #LIFT TABLE
