@@ -193,3 +193,4 @@ def feature_importance(clf, x_train, y_train):
     ax.barh(df_tmp.iloc[:10,1], df_tmp.iloc[:10,0])
     ax.set_title('features importance')
     ;
+ 
