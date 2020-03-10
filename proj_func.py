@@ -76,7 +76,7 @@ def plot_cumulative_gain(y_true, y_probas, title='Cumulative Gains Curve',ax=Non
     ax.set_ylabel('Gain', fontsize=text_fontsize)
     ax.tick_params(labelsize=text_fontsize)
     ax.grid('on')
-    ax.legend(loc='lower right', fontsize=text_fontsize)
+    #ax.legend(loc='lower right', fontsize=text_fontsize)
 
     return ax
 def plot_several_lifts(arg_models, x_train, x_test, y_train, y_test):
