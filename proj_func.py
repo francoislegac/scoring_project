@@ -173,3 +173,17 @@ def plotPRecall(arg_models, x_train, x_test, y_train, y_test):
     ax.set_title('Courbe Precision Recall : ')
     plt.savefig('precision_recall.png', dpi=200)
   
+
+def feature_importance(clf, x_train, y_train):
+    '''
+    plot the 10 most important features
+    '''
+    clf.fit(x_train, y_train)
+    importances = clf.feature_importances_
+    df_tmp = pd.concat([pd.Series(importances), pd.Series(x_train.columns)], axis=1)
+    df_tmp = df_tmp.sort_values(0, ascending=False)
+
+    fig, ax = plt.subplots()
+    ax.barh(df_tmp.iloc[:10,1], df_tmp.iloc[:10,0])
+    ax.set_title('features importance')
+    ;
